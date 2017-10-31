@@ -62,10 +62,10 @@ app.get('/usuarios/me', autenticar, (req, res) => {
 
 // Iniciar sesión
 app.post('/usuarios/login', (req, res) => {
-  var camposPermitidos = ['email', 'password'];
+  var camposPermitidos = ['username', 'password'];
   var body = _.pick(req.body, camposPermitidos);
 
-  Usuario.findByCredentials(body.email, body.password).then((usuario) => {
+  Usuario.findByCredentials(body.username, body.password).then((usuario) => {
     usuario.generarTokenDeAutenticidad().then((token) => {
       res.header('x-auth', token).send(usuario);
     });

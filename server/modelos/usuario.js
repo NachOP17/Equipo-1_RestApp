@@ -146,10 +146,10 @@ ModeloDeUsuario.statics.findByToken = function(token) {
   });
 };
 
-ModeloDeUsuario.statics.findByCredentials = function(email, password) {
+ModeloDeUsuario.statics.findByCredentials = function(username, password) {
   var Usuario = this;
 
-  return Usuario.findOne({email}).then((usuario) => {
+  return Usuario.findOne({username}).then((usuario) => {
     if (!usuario) {
       return Promise.reject();
     }
