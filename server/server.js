@@ -42,7 +42,7 @@ app.post('/usuarios', (req, res) => {
   usuario.save().then(() => {
     return usuario.generarTokenDeAutenticidad();
   }).then((token) => {
-    res.header('x-auth', token).send(usuario);
+    res.header('x-auth', token).send();
   }).catch((e) => {
     res.status(400).send(e);
   });
