@@ -44,7 +44,11 @@ app.post('/usuarios', (req, res) => {
   }).then((token) => {
     res.header('x-auth', token).send();
   }).catch((e) => {
-    res.status(400).send(e);
+    switch(e.code) {
+      case 11000: res.status(412).send(e);
+        break;
+      default: res.status(400).send(e);
+    };
   });
 });
 
